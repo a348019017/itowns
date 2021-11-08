@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import Earcut from 'earcut';
 import { FEATURE_TYPES } from 'Core/Feature';
+import { FeatureNode } from 'Process/FeatureProcessing';
 import { deprecatedFeature2MeshOptions } from 'Core/Deprecated/Undeprecator';
 
 const _color = new THREE.Color();
@@ -486,7 +487,9 @@ export default {
             group.position.copy(collection.position);
             group.scale.copy(collection.scale);
 
-            return group;
+            group.feature = collection;
+
+            return new FeatureNode(group);
         };
     },
 };
